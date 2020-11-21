@@ -17,9 +17,6 @@ sys.stdin = io.StringIO(_INPUT)
 
 from collections import deque
 
-
-
-
 def main():
     n = int(input())
     ans = deque()
