@@ -11,20 +11,20 @@ from collections import Counter
 N = int(input())
 A = list(map(int, input().split()))
 A.sort()
-Ans = [0 for i in range(1000005)]
+maxlist = A[N-1]+1
+Ans = [0 for i in range(maxlist)]
 
 for item in A:
-    if(Ans[item]!=0):
-        Ans[item] = 2
-    else:
-        Ans[item] = 1
+    Ans[item] += 1
 
 for item in A:
-    if(Ans[item]>=3):
+    if(Ans[item]==0):
         continue
     i = 2
-    while(item*i < 1000005):
-        Ans[item*i] += 2
+    while(item*i < maxlist):
+        if(Ans[item]==0):
+            break
+        Ans[item*i] = 0
         i += 1
 ans = 0
 for item in Ans:
