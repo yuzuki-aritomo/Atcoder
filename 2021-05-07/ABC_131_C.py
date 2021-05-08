@@ -1,10 +1,12 @@
 import io
 import sys
 _INPUT = """\
-10 40 6 8
+314159265358979323 846264338327950288 419716939 937510582
 """
 sys.stdin = io.StringIO(_INPUT)
 
+
+import numpy
 A, B, C, D = map(int, input().split())
 
 if(A%C == 0):
@@ -13,7 +15,6 @@ else:
     Cn = A//C
 Cm = B//C + 1
 a = max(Cm - Cn - 1, 0)
-print("a:", a)
 
 if(A%D == 0):
     Dn = A//D  - 1
@@ -21,14 +22,13 @@ else:
     Dn = A//D
 Dm = B//D + 1
 b = max(Dm - Dn - 1, 0)
-print("b:", b)
 
-if(A%(C*D) == 0):
-    CDn = A//(C*D)  - 1
+CD = numpy.lcm(C, D)
+if(A%(CD) == 0):
+    CDn = A//(CD)  - 1
 else:
-    CDn = A//(C*D)
-CDm = B//(C*D) + 1
+    CDn = A//(CD)
+CDm = B//(CD) + 1
 c = max(CDm - CDn - 1, 0)
-print("c:", c)
 
 print(B - A + 1 - (a+b-c))
